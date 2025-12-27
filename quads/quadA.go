@@ -1,1 +1,29 @@
 package quads
+
+import (
+	"fmt"
+
+	"github.com/01-edu/z01"
+)
+
+func QuadA(x, y int) {
+	if x <= 0 || y <= 0 {
+		fmt.Printf("Invalid input parameters\n")
+		return
+	}
+
+	for row := 0; row < y; row++ {
+		for col := 0; col < x; col++ {
+			if (row == 0 || row == y-1) && (col == 0 || col == x-1) {
+				z01.PrintRune('o')
+			} else if row == 0 || row == y-1 {
+				z01.PrintRune('-')
+			} else if col == 0 || col == x-1 {
+				z01.PrintRune('|')
+			} else {
+				z01.PrintRune(' ')
+			}
+		}
+		z01.PrintRune('\n')
+	}
+}
