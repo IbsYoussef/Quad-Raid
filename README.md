@@ -137,8 +137,8 @@ quad/
 
 ```bash
 # Clone the repository
-git clone https://github.com/IbsYoussef/quad.git
-cd quad
+git clone https://github.com/IbsYoussef/Quad-Raid.git
+cd Quad-Raid
 
 # Download dependencies
 go mod download
