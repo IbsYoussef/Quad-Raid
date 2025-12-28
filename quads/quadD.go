@@ -24,6 +24,7 @@ import (
 // - 'C' at top-right and bottom-right corners
 // - 'B' on all other edges
 // - ' ' (space) in the interior
+
 func QuadD(x, y int) {
 	// Validate input
 	if x <= 0 || y <= 0 {
