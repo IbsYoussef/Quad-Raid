@@ -9,7 +9,7 @@ import (
 func main() {
 	printBanner()
 
-	// Demo all quads
+	// Demonstrate all Quad outputs
 	showQuad("QuadA", 5, 3, quads.QuadA)
 	showQuad("QuadB", 5, 3, quads.QuadB)
 	showQuad("QuadC", 5, 3, quads.QuadC)
