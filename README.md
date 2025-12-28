@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Demo](outputs/demo.gif)
+![Demo](assets/demo.gif)
 
 [![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://golang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
@@ -36,14 +36,20 @@ This project implements five different ASCII rectangle drawing functions (QuadA 
 
 ### Part of 01 Founders Piscine
 
-This exercise is part of the **Piscine-Go** selection process at 01 Founders, a 3-week intensive coding bootcamp. The Piscine (French for "swimming pool") is an immersive, peer-to-peer learning experience that tests:
+<div align="center">
+
+<img src="assets/image.png" alt="01 Founders Logo" width="400"/>
+
+</div>
+
+This exercise is part of the **Piscine-Go** selection process at [01 Founders](https://01-edu.org/), a 3-week intensive coding bootcamp. The Piscine (French for "swimming pool") is an immersive, peer-to-peer learning experience that tests:
 
 - **Problem-solving under pressure** - Complete exercises with time constraints
 - **Self-directed learning** - Figure out solutions through documentation and experimentation
 - **Collaboration** - Work with peers to understand complex problems (Raid projects are team-based)
 - **Code quality** - Write clean, well-documented, testable code
 
-The Quadrangle Raid specifically focuses on:
+The Quad Raid specifically focuses on:
 
 - Understanding nested loop mechanics and execution flow
 - Implementing position-based conditional logic
@@ -81,6 +87,9 @@ quad/
 │   ├── quadC_test.go         # 17 tests for QuadC
 │   ├── quadD_test.go         # 17 tests for QuadD
 │   └── quadE_test.go         # 17 tests for QuadE
+├── assets/                    # Project assets
+│   ├── 01foundersLogo.webp   # 01 Founders branding
+│   └── demo.gif              # Terminal recording showcase
 ├── go.mod                     # Module definition
 ├── go.sum                     # Dependency checksums
 ├── LICENSE                    # MIT License
@@ -109,6 +118,11 @@ quad/
   - Standard cases: 5x3, 1x1, 5x1, 1x5, 1x3, 3x1
   - Edge cases: 2x2, 3x3, 7x4, 10x6, 15x2, 2x10
   - Invalid inputs: 0x5, 5x0, -5x3, 5x-3
+
+**`assets/`**
+
+- `01foundersLogo.webp`: 01 Founders branding and logo
+- `demo.gif`: Animated terminal recording demonstrating all quadrangle patterns
 
 <a name="installation"></a>
 
