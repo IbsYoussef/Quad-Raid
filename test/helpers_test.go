@@ -21,7 +21,7 @@ func captureOutput(f func()) string {
 	// Step 4: Run the funciton (it will print to our pipe instead of terminal)
 	f()
 
-	// Step 5: Close the write end and restore originsl stdout
+	// Step 5: Close the write end and restore original stdout
 	w.Close()
 	os.Stdout = oldStdout
 
