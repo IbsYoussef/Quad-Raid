@@ -23,6 +23,7 @@ A Go-based ASCII art rectangle generator that produces five distinct geometric p
 - [Pattern Examples](#pattern-examples)
 - [Technical Implementation](#technical-implementation)
 - [Testing](#testing)
+- [Audit Questions](#audit-questions)
 - [Development](#development)
 - [Learning Outcomes](#learning-outcomes)
 - [Author](#author)
@@ -399,6 +400,480 @@ $ go test -v ./test/ -run TestQuadA_5x3
 PASS
 ok      quad/test       0.003s
 ```
+
+<a name="audit-questions"></a>
+
+## 🔍 Audit Questions
+
+### About Audits at 01 Founders
+
+At 01 Founders, all Raid projects (team-based challenges) undergo a rigorous **audit process** as part of the peer-to-peer learning model. During an audit:
+
+- **Peer Review:** Students evaluate each other's projects through structured questioning
+- **Functionality Testing:** Auditors verify that the program meets all specified requirements
+- **Code Quality Assessment:** Projects are examined for clean code, proper structure, and best practices
+- **Understanding Verification:** Students must explain their implementation choices and technical decisions
+
+The audit serves multiple purposes:
+
+1. **Quality Assurance** - Ensures all submissions meet the exercise standards
+2. **Knowledge Sharing** - Students learn from reviewing others' approaches
+3. **Communication Skills** - Practice explaining technical concepts clearly
+4. **Accountability** - Encourages thorough testing and documentation
+
+This section addresses the standard audit questions for the Quad Raid project, demonstrating that the implementation meets all requirements.
+
+---
+
+### General Setup
+
+**Q: Can you confirm that the `go.mod` file is present and you can run the program?**
+
+Yes! The project includes:
+
+- `go.mod` - Go module definition with dependencies
+- `go.sum` - Dependency checksums for reproducibility
+- All source code compiles and runs without errors
+
+Run the program:
+
+```bash
+go run main.go
+```
+
+---
+
+### QuadA - Classic Corners Pattern
+
+**Pattern:** `o` at corners, `-` on horizontal edges, `|` on vertical edges
+
+#### Test Cases
+
+**Q: Does `x=5 and y=3` produce the correct output?**
+
+```bash
+go run main.go
+# Output from QuadA section:
+o---o
+|   |
+o---o
+```
+
+✅ **Yes** - Corners use `o`, top/bottom edges use `-`, side edges use `|`
+
+**Q: Does `x=5 and y=1` produce a single horizontal line?**
+
+```
+o---o
+```
+
+✅ **Yes** - Single row with corners and horizontal edge
+
+**Q: Does `x=1 and y=1` produce a single corner?**
+
+```
+o
+```
+
+✅ **Yes** - 1x1 grid shows only one corner character
+
+**Q: Does `x=1 and y=5` produce a vertical line?**
+
+```
+o
+|
+|
+|
+o
+```
+
+✅ **Yes** - Single column with top/bottom corners and vertical edges
+
+**Q: Do invalid inputs (`x=0`, `y=0`, `x=-1`, `y=-1`) return nothing?**
+
+✅ **Yes** - Input validation prevents output for zero or negative dimensions
+
+**Q: Does `x=20 and y=1` produce a long horizontal line?**
+
+```
+o------------------o
+```
+
+✅ **Yes** - Scales correctly to any valid width
+
+**Q: Does `x=10 and y=8` produce the correct rectangle?**
+
+```
+o--------o
+|        |
+|        |
+|        |
+|        |
+|        |
+|        |
+o--------o
+```
+
+✅ **Yes** - Properly handles larger dimensions
+
+---
+
+### QuadB - Diagonal Corners Pattern
+
+**Pattern:** `/` at top-left & bottom-right, `\` at top-right & bottom-left, `*` on other edges
+
+#### Test Cases
+
+**Q: Does `x=5 and y=3` produce diagonal corners?**
+
+```
+/***\
+*   *
+\***/
+```
+
+✅ **Yes** - Each corner has its unique diagonal character
+
+**Q: Does `x=5 and y=1` show only top edge with corners?**
+
+```
+/***\
+```
+
+✅ **Yes** - Single row shows top-left and top-right corners
+
+**Q: Does `x=1 and y=1` show top-left corner?**
+
+```
+/
+```
+
+✅ **Yes** - 1x1 grid displays `/` (top-left corner)
+
+**Q: Does `x=1 and y=5` show vertical diagonal pattern?**
+
+```
+/
+*
+*
+*
+\
+```
+
+✅ **Yes** - Top corner `/`, edges `*`, bottom corner `\`
+
+**Q: Does `x=18 and y=6` scale correctly?**
+
+```
+/****************\
+*                *
+*                *
+*                *
+*                *
+\****************/
+```
+
+✅ **Yes** - Pattern maintains integrity at larger sizes
+
+**Q: Does `x=9 and y=3` work correctly?**
+
+```
+/*******\
+*       *
+\*******/
+```
+
+✅ **Yes** - Diagonal corners properly positioned
+
+---
+
+### QuadC - A-C Pattern (Top/Bottom)
+
+**Pattern:** `A` on top corners, `C` on bottom corners, `B` on other edges
+
+#### Test Cases
+
+**Q: Does `x=5 and y=3` show A-C pattern?**
+
+```
+ABBBA
+B   B
+CBBBC
+```
+
+✅ **Yes** - Top row has `A` corners, bottom has `C` corners
+
+**Q: Does `x=5 and y=1` show only top row?**
+
+```
+ABBBA
+```
+
+✅ **Yes** - Single row shows top corners only
+
+**Q: Does `x=1 and y=1` show single `A`?**
+
+```
+A
+```
+
+✅ **Yes** - Top-left corner character
+
+**Q: Does `x=1 and y=5` show vertical A-to-C pattern?**
+
+```
+A
+B
+B
+B
+C
+```
+
+✅ **Yes** - Starts with `A`, ends with `C`, middle is `B`
+
+**Q: Does `x=13 and y=7` scale properly?**
+
+```
+ABBBBBBBBBBBA
+B           B
+B           B
+B           B
+B           B
+B           B
+CBBBBBBBBBBBC
+```
+
+✅ **Yes** - Pattern integrity maintained
+
+**Q: Does `x=10 and y=15` handle tall rectangles?**
+
+```
+ABBBBBBBBA
+B        B
+B        B
+B        B
+B        B
+B        B
+B        B
+B        B
+B        B
+B        B
+B        B
+B        B
+B        B
+B        B
+CBBBBBBBBC
+```
+
+✅ **Yes** - Vertical scaling works correctly
+
+---
+
+### QuadD - Left-Right A-C Pattern
+
+**Pattern:** `A` on left corners, `C` on right corners, `B` on other edges
+
+#### Test Cases
+
+**Q: Does `x=5 and y=3` show left-right A-C pattern?**
+
+```
+ABBBC
+B   B
+ABBBC
+```
+
+✅ **Yes** - Left corners use `A`, right corners use `C`
+
+**Q: Does `x=5 and y=1` show single row pattern?**
+
+```
+ABBBC
+```
+
+✅ **Yes** - Left corner `A`, right corner `C`
+
+**Q: Does `x=1 and y=1` show single `A`?**
+
+```
+A
+```
+
+✅ **Yes** - Left corner character
+
+**Q: Does `x=1 and y=5` show vertical A pattern?**
+
+```
+A
+B
+B
+B
+A
+```
+
+✅ **Yes** - Both corners on left side use `A`
+
+**Q: Does `x=3 and y=16` handle narrow tall rectangles?**
+
+```
+ABC
+B B
+B B
+B B
+B B
+B B
+B B
+B B
+B B
+B B
+B B
+B B
+B B
+B B
+B B
+ABC
+```
+
+✅ **Yes** - Narrow width properly displays all three characters
+
+**Q: Does `x=7 and y=16` scale properly?**
+
+```
+ABBBBBC
+B     B
+B     B
+B     B
+B     B
+B     B
+B     B
+B     B
+B     B
+B     B
+B     B
+B     B
+B     B
+B     B
+B     B
+ABBBBBC
+```
+
+✅ **Yes** - Left-right pattern maintained at larger sizes
+
+---
+
+### QuadE - Diagonal A-C Pattern (Reversed)
+
+**Pattern:** `A` at top-left & bottom-right, `C` at top-right & bottom-left, `B` on other edges
+
+#### Test Cases
+
+**Q: Does `x=5 and y=3` show reversed diagonal pattern?**
+
+```
+ABBBC
+B   B
+CBBBA
+```
+
+✅ **Yes** - Top-left `A`, top-right `C`, bottom-left `C`, bottom-right `A`
+
+**Q: Does `x=5 and y=1` show single row?**
+
+```
+ABBBC
+```
+
+✅ **Yes** - Top row only (A left, C right)
+
+**Q: Does `x=1 and y=1` show single `A`?**
+
+```
+A
+```
+
+✅ **Yes** - Top-left corner (which is also bottom-right in 1x1)
+
+**Q: Does `x=1 and y=5` show vertical A-to-C pattern?**
+
+```
+A
+B
+B
+B
+C
+```
+
+✅ **Yes** - Top `A`, bottom `C` (diagonal pattern)
+
+**Q: Does `x=21 and y=24` handle very large rectangles?**
+
+```
+ABBBBBBBBBBBBBBBBBBBC
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+B                   B
+CBBBBBBBBBBBBBBBBBBBA
+```
+
+✅ **Yes** - Diagonal pattern maintained at large scale
+
+**Q: Does `x=18 and y=8` work correctly?**
+
+```
+ABBBBBBBBBBBBBBBBC
+B                B
+B                B
+B                B
+B                B
+B                B
+B                B
+CBBBBBBBBBBBBBBBBA
+```
+
+✅ **Yes** - Pattern integrity preserved
+
+---
+
+### Common Audit Notes
+
+**Input Validation:**
+
+- ✅ All quads reject `x=0` or `y=0` (returns nothing)
+- ✅ All quads reject negative values `x=-1` or `y=-1`
+- ✅ No crashes or unexpected behavior on invalid input
+
+**Code Quality:**
+
+- ✅ Modular structure with separate files per quad
+- ✅ Consistent naming conventions
+- ✅ Comprehensive test coverage (85 tests)
+- ✅ Proper use of Go packages and imports
+
+**Pattern Accuracy:**
+
+- ✅ Each quad implements its unique pattern correctly
+- ✅ Edge cases (1x1, 1xN, Nx1) handled properly
+- ✅ Scales correctly to arbitrary dimensions
+- ✅ Corner/edge logic follows specifications exactly
 
 <a name="development"></a>
 
